@@ -32,9 +32,9 @@ def non_max_suppression_old(boxes,
                         name=None):
 
 
-  with tf.ops.name_scope(name, 'non_max_suppression'):
-    iou_threshold = tf.ops.convert_to_tensor(iou_threshold, name='iou_threshold')
-    score_threshold = tf.ops.convert_to_tensor(
+  with tf.name_scope(name, 'non_max_suppression'):
+    iou_threshold = tf.convert_to_tensor(iou_threshold, name='iou_threshold')
+    score_threshold = tf.convert_to_tensor(
         score_threshold, name='score_threshold')
 
     return gen_image_ops.non_max_suppression_v2(boxes, scores, max_output_size,
@@ -50,9 +50,9 @@ def non_max_suppression_padded_old(boxes,
                                pad_to_max_output_size=False,
                                name=None):
 
-  with tf.ops.name_scope(name, 'non_max_suppression_padded'):
-    iou_threshold = tf.ops.convert_to_tensor(iou_threshold, name='iou_threshold')
-    score_threshold = tf.ops.convert_to_tensor(
+  with tf.name_scope(name, 'non_max_suppression_padded'):
+    iou_threshold = tf.convert_to_tensor(iou_threshold, name='iou_threshold')
+    score_threshold = tf.convert_to_tensor(
         score_threshold, name='score_threshold')
     if pad_to_max_output_size:
       return gen_image_ops.non_max_suppression_v2(
