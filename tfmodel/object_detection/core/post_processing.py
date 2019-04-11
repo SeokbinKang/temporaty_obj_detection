@@ -191,7 +191,7 @@ def multiclass_non_max_suppression(boxes,
       if pad_to_max_output_size:
         max_selection_size = max_size_per_class
         selected_indices, num_valid_nms_boxes = (
-            tf.image.non_max_suppression_padded_old(
+            non_max_suppression_padded_old(
                 boxlist_and_class_scores.get(),
                 boxlist_and_class_scores.get_field(fields.BoxListFields.scores),
                 max_selection_size,
@@ -201,7 +201,7 @@ def multiclass_non_max_suppression(boxes,
       else:
         max_selection_size = tf.minimum(max_size_per_class,
                                         boxlist_and_class_scores.num_boxes())
-        selected_indices = tf.image.non_max_suppression_old(
+        selected_indices = non_max_suppression_old(
             boxlist_and_class_scores.get(),
             boxlist_and_class_scores.get_field(fields.BoxListFields.scores),
             max_selection_size,
