@@ -3,3 +3,14 @@
 __pycache__
 .vscode/
 models/*
+tfmodel/object_detection/.idea/misc.xml
+tfmodel/object_detection/.idea/object_detection.iml
+
+tfmodel/slim/.idea/slim.iml
+tfmodel/object_detection/.idea/modules.xml
+tfmodel/slim/.idea/misc.xml
+tfmodel/object_detection/.idea/vcs.xml
+tfmodel/slim/.idea/vcs.xml
+tfmodel/slim/.idea/workspace.xml
+tfmodel/slim/.idea/modules.xml
+tfmodel/object_detection/.idea/workspace.xml

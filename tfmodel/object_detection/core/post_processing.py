@@ -22,6 +22,45 @@ from object_detection.core import box_list
 from object_detection.core import box_list_ops
 from object_detection.core import standard_fields as fields
 from object_detection.utils import shape_utils
+from tf.python.ops import gen_image_ops
+
+def non_max_suppression_old(boxes,
+                        scores,
+                        max_output_size,
+                        iou_threshold=0.5,
+                        score_threshold=float('-inf'),
+                        name=None):
+
+
+  with tf.ops.name_scope(name, 'non_max_suppression'):
+    iou_threshold = tf.ops.convert_to_tensor(iou_threshold, name='iou_threshold')
+    score_threshold = tf.ops.convert_to_tensor(
+        score_threshold, name='score_threshold')
+
+    return gen_image_ops.non_max_suppression_v2(boxes, scores, max_output_size,
+                                                iou_threshold)
+
+
+
+def non_max_suppression_padded_old(boxes,
+                               scores,
+                               max_output_size,
+                               iou_threshold=0.5,
+                               score_threshold=float('-inf'),
+                               pad_to_max_output_size=False,
+                               name=None):
+
+  with tf.ops.name_scope(name, 'non_max_suppression_padded'):
+    iou_threshold = tf.ops.convert_to_tensor(iou_threshold, name='iou_threshold')
+    score_threshold = tf.ops.convert_to_tensor(
+        score_threshold, name='score_threshold')
+    if pad_to_max_output_size:
+      return gen_image_ops.non_max_suppression_v2(
+          boxes, scores, max_output_size, iou_threshold)
+   
+    else:
+      return gen_image_ops.non_max_suppression_v2(
+          boxes, scores, max_output_size, iou_threshold)
 
 
 def multiclass_non_max_suppression(boxes,
@@ -152,7 +191,7 @@ def multiclass_non_max_suppression(boxes,
       if pad_to_max_output_size:
         max_selection_size = max_size_per_class
         selected_indices, num_valid_nms_boxes = (
-            tf.image.non_max_suppression_padded(
+            tf.image.non_max_suppression_padded_old(
                 boxlist_and_class_scores.get(),
                 boxlist_and_class_scores.get_field(fields.BoxListFields.scores),
                 max_selection_size,
@@ -162,7 +201,7 @@ def multiclass_non_max_suppression(boxes,
       else:
         max_selection_size = tf.minimum(max_size_per_class,
                                         boxlist_and_class_scores.num_boxes())
-        selected_indices = tf.image.non_max_suppression(
+        selected_indices = tf.image.non_max_suppression_old(
             boxlist_and_class_scores.get(),
             boxlist_and_class_scores.get_field(fields.BoxListFields.scores),
             max_selection_size,
