@@ -22,7 +22,7 @@ from object_detection.core import box_list
 from object_detection.core import box_list_ops
 from object_detection.core import standard_fields as fields
 from object_detection.utils import shape_utils
-from tf.python.ops import gen_image_ops
+from tensorflow.python.ops import gen_image_ops
 
 def non_max_suppression_old(boxes,
                         scores,
@@ -57,7 +57,7 @@ def non_max_suppression_padded_old(boxes,
     if pad_to_max_output_size:
       return gen_image_ops.non_max_suppression_v2(
           boxes, scores, max_output_size, iou_threshold)
-   
+
     else:
       return gen_image_ops.non_max_suppression_v2(
           boxes, scores, max_output_size, iou_threshold)
