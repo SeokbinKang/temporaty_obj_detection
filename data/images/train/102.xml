@@ -1,0 +1,26 @@
+<annotation>
+  <folder>train</folder>
+  <filename>102</filename>
+  <path>D:\dev\ARMath\TFModels\Retraining\images\data\images\train\102.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1200</width>
+    <height>675</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>poster</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>276</xmin>
+      <ymin>3</ymin>
+      <xmax>775</xmax>
+      <ymax>471</ymax>
+    </bndbox>
+  </object>
+</annotation>
