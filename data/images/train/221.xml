@@ -1,0 +1,26 @@
+<annotation>
+  <folder>images</folder>
+  <filename>221</filename>
+  <path>D:\dev\ARMath\TFModels\Retraining\images\data\data\images\221.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1200</width>
+    <height>675</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>poster</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>345</xmin>
+      <ymin>56</ymin>
+      <xmax>794</xmax>
+      <ymax>558</ymax>
+    </bndbox>
+  </object>
+</annotation>
