@@ -67,7 +67,10 @@ def main(unused_argv):
   inter_op = 10
   intra_op = 10
   print(get_available_gpus())
-  config = tf.estimator.RunConfig(model_dir=FLAGS.model_dir,session_config=tf.ConfigProto(device_count={'GPU': 1}, inter_op_parallelism_threads=inter_op,intra_op_parallelism_threads=intra_op))
+  session_config_ = tf.ConfigProto(device_count={'GPU': 1}, inter_op_parallelism_threads=inter_op,intra_op_parallelism_threads=intra_op)
+  session_config_.gpu_options.allow_growth = True
+
+  config = tf.estimator.RunConfig(model_dir=FLAGS.model_dir,session_config=session_config_)
 
   train_and_eval_dict = model_lib.create_estimator_and_inputs(
       run_config=config,
