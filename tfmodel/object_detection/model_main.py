@@ -54,12 +54,20 @@ flags.DEFINE_boolean(
     'one round of eval vs running continuously (default).'
 )
 FLAGS = flags.FLAGS
+import os
+from tensorflow.python.client import device_lib
 
+def get_available_gpus():
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos if x.device_type == 'GPU']
 
 def main(unused_argv):
   flags.mark_flag_as_required('model_dir')
   flags.mark_flag_as_required('pipeline_config_path')
-  config = tf.estimator.RunConfig(model_dir=FLAGS.model_dir)
+  inter_op = 10
+  intra_op = 10
+  print(get_available_gpus())
+  config = tf.estimator.RunConfig(model_dir=FLAGS.model_dir,session_config=tf.ConfigProto(device_count={'GPU': 1}, inter_op_parallelism_threads=inter_op,intra_op_parallelism_threads=intra_op))
 
   train_and_eval_dict = model_lib.create_estimator_and_inputs(
       run_config=config,
@@ -101,6 +109,8 @@ def main(unused_argv):
         train_steps,
         eval_on_train_data=False)
 
+    print('start...')
+    
     # Currently only a single Eval Spec is allowed.
     tf.estimator.train_and_evaluate(estimator, train_spec, eval_specs[0])
 
