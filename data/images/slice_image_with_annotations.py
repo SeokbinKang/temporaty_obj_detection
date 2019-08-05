@@ -65,11 +65,11 @@ def slice(image, xml, fname, path, size=(1, 2), suffix=''):
 
             if tree.find('object') != None:
 
-                tree.write(path + '{}.xml'.format(fname + '_' + str(c) + '_' + str(size[0]) + '_' + str(size[1]) + '_' + suffix))
+                tree.write(path + '{}.xml'.format(slide_jpg_name))
 
                 # tile = cv2.cvtColor(tile, cv2.COLOR_BGR2RGB)
 
-                cv2.imwrite(path + '{}.jpg'.format(fname+'_' + str(c) + '_' + str(size[0]) + '_' + str(size[1]) + '_' + suffix), tile, [cv2.IMWRITE_JPEG_QUALITY, 95])
+                cv2.imwrite(path + '{}.jpg'.format(slide_jpg_name), tile, [cv2.IMWRITE_JPEG_QUALITY, 95])
 
 
 def main():
